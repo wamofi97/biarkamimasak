@@ -26,7 +26,7 @@ export default function Home() {
         
         <div className="">
             <div className="text-center w-full pt-4">
-              <h1 className="text-3xl font-logo font-bold my-2"><span>🧑‍🍳</span><ShimmeringText text="Biar Kami Masak" /><span>🍴</span></h1>
+              <h1 className="text-3xl font-logo font-bold my-2"><span>🧑‍🍳</span><ShimmeringText text="Let Him Cook" /><span>🍴</span></h1>
               <h2>A smart recipe recommender that provide the best recipe based on your available ingredients.</h2>
             </div>
             
