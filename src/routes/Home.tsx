@@ -35,10 +35,11 @@ export default function Home() {
                 <p className="italic">let-him-cook </p>
                 <Button onClick={() => play()} onClickCapture={toggleMusic}  variant="outline" className="ml-2 h-8 w-8"><Volume2/> </Button>
               </div>
-              <p className="text-sm">Definition : to let someone do what they are doing because it's interesting or it may result in something. <span className="group inline-block relative w-20">
+              <p className="text-sm">Definition : to let someone do what they are doing because it's interesting or it may result in something.</p>
+              <div className="group inline-block relative w-20">
                 <p className="text-sm italic  opacity-80  underline">Source</p>
                 <img className="absolute -top-4 scale-[0.1] opacity-0 rounded-2xl w-20 h-16 group-hover:scale-125 group-hover:opacity-100 transition-transform duration-300" src={meme} alt="trust me bro meme" />
-              </span></p>
+              </div>
               
             </div>
         </div>      
