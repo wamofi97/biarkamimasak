@@ -32,7 +32,7 @@ export default function IngredientInputSection(){
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'X-Recipe-API-Key' : import.meta.env.VITE_RECIPE_API_KEY,
+          'X-Recipe-API-Key' : import.meta.env.RECIPE_API_KEY,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ ingredients }),
