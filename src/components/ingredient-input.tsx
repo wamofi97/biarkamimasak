@@ -3,11 +3,8 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { Delete, Dice1, Plus } from 'lucide-react';
 import { Badge } from './ui/badge';
-import { useAuth } from '@clerk/clerk-react';
-import RecipeList from './recipe-list';
 import LoadingSpinner from './loading-spinner';
 import ShiningText from './shiningtext';
-import { parseRecipeData } from '@/lib/utils';
 import RecipeCard from './recipe-card';
 
 interface Recipe {
@@ -79,12 +76,10 @@ export default function IngredientInputSection(){
   return (
     <div className={`w-full ${hasSearch ? 'flex' : ' max-w-2xl' } justify-center flex-wrap gap-x-8 gap-y-4 mx-auto my-4 sm:px-12 px-6 py-8 bg-neutral-50 dark:bg-neutral-900/10 border rounded-lg shadow-md`}>
       <div className='mx-auto   w-full'>
-          {/* Title */}
         <h2 className="text-2xl font-heading font-semibold mb-4 text-gray-800 dark:text-gray-100">
           What’s in your kitchen?
         </h2>
 
-        {/* Input and Add Button */}
         <div className="flex items-center justify-between gap-2 mb-2">
           <Input
             type="text"
@@ -105,12 +100,10 @@ export default function IngredientInputSection(){
         
         {ingredients?.length > 0 ? <p className='text-sm opacity-70 my-2'>Selected ingredients:</p> : <p className='text-sm opacity-70'>No ingredients added yet.</p>}
         
-        {/* Display Ingredients as Tags */}
         <div className={`flex ${ingredients?.length === 0 ? '' : 'justify-between'} mb-4`}>
           
           <div className='flex flex-wrap gap-2'>
           {ingredients?.map((ingredient, index) => (
-            
               <Badge
                 key={index}
                 variant="secondary"
@@ -121,14 +114,12 @@ export default function IngredientInputSection(){
                   <Delete className='w-5 h-5'/>
                 </button>
               </Badge>
-            
           ))}
           </div>
           { ingredients?.length !== 0 && <Button variant='link' className='' onClick={() => setIngredients([])}>Reset</Button>}
         </div>
 
         <Button className="w-full font-logo text-lg font-bold tracking-widest" disabled={ingredients?.length === 0} onClick={handleSearch}>LET HIM COOK</Button>
-  
       </div>
       
       <div className=''>

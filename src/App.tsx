@@ -4,7 +4,6 @@ import Header from "./components/header"
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SignInPage from "./routes/SignIn";
 import SignUpPage from "./routes/SignUp";
-import { ModeToggle } from "./components/mode-toggle";
 
 function App() {
 

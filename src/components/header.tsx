@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { SignedOut, UserButton } from "@clerk/clerk-react"
-// import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
 
 const Header = () => {
