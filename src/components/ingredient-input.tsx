@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { Delete, Dice1, Plus } from 'lucide-react';
+import { Delete, Plus } from 'lucide-react';
 import { Badge } from './ui/badge';
 import LoadingSpinner from './loading-spinner';
 import ShiningText from './shiningtext';
@@ -20,7 +20,7 @@ interface Recipe {
 export default function IngredientInputSection(){ 
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [ingredientInput, setIngredientInput] = useState<string>('');
-  const [recipe, setRecipe] = useState<Recipe>();
+  const [recipe, setRecipe] = useState<Recipe>({} as Recipe);
   const [loading, setLoading] = useState<boolean>(false);
   const [hasSearch, setHasSearch] = useState<boolean>(false);
 
