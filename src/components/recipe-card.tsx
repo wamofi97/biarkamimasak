@@ -1,4 +1,5 @@
 import React from 'react';
+import ShiningText from './shiningtext';
 
 interface Recipe {
   title: string;
@@ -17,7 +18,7 @@ interface RecipeCardProps {
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <div className="py-6 flex flex-col">
-      <h3 className="text-3xl font-bold text-center font-heading">{recipe.title}</h3>
+      <h3 className="text-3xl font-bold text-center font-heading"><ShiningText text={`${recipe.title}`} ></ShiningText></h3>
 
       <div className='flex flex-wrap gap-x-12 justify-center'>
         <p className="opacity-80 mt-2">Cooking time: <span>{recipe.cooking_time}</span></p>

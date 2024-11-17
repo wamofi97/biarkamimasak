@@ -1,4 +1,4 @@
-const ShiningText = ({ text = "Shine Bright!", color = "text-purple-600", className="inline-block" }) => {
+const ShiningText = ({ text = "Shine Bright!", color = "text-yellow-500 dark:text-yellow-300", className="inline-block" }) => {
   return (
     <div className={`relative top-1 w-fit bg-neutral-100 dark:bg-neutral-800 overflow-hidden rounded-full px-2 pt-1 ${className}`}>
       <span className={`font-bold ${color}`}>
