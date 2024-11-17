@@ -1,22 +1,22 @@
-import meme from "../assets/meme.jpg";
-import { useState } from "react";
+// import meme from "../assets/meme.jpg";
+// import { useState } from "react";
 import IngredientInputSection from "../components/ingredient-input";
-import { Button } from "@/components/ui/button";
-import { Volume2 } from "lucide-react";
-import useSound from "use-sound";
-import lethimcook from "/lethimcook.mp3";
-import lethimcook2 from "/lethimcook2.mp3";
+// import { Button } from "@/components/ui/button";
+// import { Volume2 } from "lucide-react";
+// import useSound from "use-sound";
+// import lethimcook from "/lethimcook.mp3";
+// import lethimcook2 from "/lethimcook2.mp3";
 import { ModeToggle } from "@/components/mode-toggle";
 import ShimmeringText from "@/components/shimmeringtext";
 
 export default function Home() {
-  const music = [lethimcook, lethimcook2];
-  const [musicIndex, setMusicIndex] = useState(1);
-  const [play] = useSound(music[musicIndex], { volume: 0.5 });
+  // const music = [lethimcook, lethimcook2];
+  // const [musicIndex, setMusicIndex] = useState(1);
+  // const [play] = useSound(music[musicIndex], { volume: 0.5 });
 
-  const toggleMusic = () => {
-    setMusicIndex((prevIndex) => (prevIndex + 1) % music.length);
-  };
+  // const toggleMusic = () => {
+  //   setMusicIndex((prevIndex) => (prevIndex + 1) % music.length);
+  // };
 
   return (
     <div className="min-h-screen max-w-4xl flex flex-col justify-center mx-auto py-2 ">
