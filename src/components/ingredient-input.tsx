@@ -294,7 +294,7 @@ export default function IngredientInputSection() {
       <div className="mx-auto w-full">
         <h2 className="text-2xl text-center font-heading font-semibold mb-4 text-gray-800 dark:text-gray-100">
           {recipe.notes.length > 0
-            ? "Try something new"
+            ? "Try another one!"
             : "What’s in your kitchen?"}
         </h2>
 

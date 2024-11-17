@@ -1,7 +1,6 @@
-
 const LoadingSpinner = () => {
   return (
-    <div className="flex flex-col items-center justify-center my-8 text-lg">
+    <div className="flex flex-col text-sm items-center justify-center ">
       <div className="flex space-x-2">
         <div className="w-3 h-3 bg-yellow-200 rounded-full animate-pulse delay-0"></div>
         <div className="w-3 h-3 bg-yellow-200 rounded-full animate-pulse delay-200"></div>
