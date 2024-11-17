@@ -187,95 +187,30 @@ export default function IngredientInputSection() {
         hasSearch ? "flex" : " max-w-2xl"
       } justify-center flex-wrap gap-x-8 gap-y-4 mx-auto my-4 sm:px-12 px-6 py-8 bg-neutral-50 dark:bg-neutral-900/10 border rounded-lg shadow-md`}
     >
-      <div className="mx-auto   w-full">
-        <h2 className="text-2xl font-heading font-semibold mb-4 text-gray-800 dark:text-gray-100">
-          What’s in your kitchen?
-        </h2>
-
-        <div className="flex items-center justify-between gap-2 mb-2">
-          <Input
-            type="text"
-            value={ingredientInput}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter ingredients (e.g., chicken, tomatoes, cheese)"
-            className="w-full"
-          />
-          <Button onClick={addIngredient} variant="secondary" className="">
-            <Plus />
-          </Button>
+      {!hasSearch ? null : loading ? (
+        <div className="flex justify-end">
+          <LoadingSpinner />
         </div>
-
-        {ingredients?.length > 0 ? (
-          <p className="text-sm opacity-70 my-2">Selected ingredients:</p>
-        ) : (
-          <p className="text-sm opacity-70">No ingredients added yet.</p>
-        )}
-
-        <div
-          className={`flex ${
-            ingredients?.length === 0 ? "" : "justify-between"
-          } mb-4`}
-        >
-          <div className="flex flex-wrap gap-2">
-            {ingredients?.map((ingredient, index) => (
-              <Badge
-                key={index}
-                variant="secondary"
-                className=" flex items-center gap-2 text-sm"
-              >
-                {ingredient}
-                <button
-                  onClick={() => removeIngredient(ingredient)}
-                  className="text-red-800 hover:text-red-900"
-                >
-                  <Delete className="w-5 h-5" />
-                </button>
-              </Badge>
-            ))}
-          </div>
-          {ingredients?.length !== 0 && (
-            <Button
-              variant="link"
-              className=""
-              onClick={() => setIngredients([])}
-            >
-              Reset
-            </Button>
-          )}
-        </div>
-
-        <Button
-          className="w-full font-logo text-lg font-bold tracking-widest"
-          disabled={ingredients?.length === 0}
-          onClick={handleSearch}
-        >
-          LET HIM COOK
-        </Button>
-      </div>
-
-      <div className="">
-        {!hasSearch ? null : loading ? (
-          <div className="flex justify-end">
-            <LoadingSpinner />
-          </div>
-        ) : (
-          <section className="flex flex-col justify-center items-center">
-            <h4 className="opacity-80 text-sm text-center">
-              We have let him cook, now we gonna{" "}
-              <ShiningText
-                text="let you cook ✨"
-                className="inline-block"
-                color="text-yellow-500 dark:text-yellow-300"
-              />
-            </h4>
-            {/* <RecipeCard recipe={recipe} /> */}
-          </section>
-        )}
-      </div>
+      ) : (
+        <section className="flex flex-col justify-center items-center">
+          <h4 className="opacity-80 text-sm text-center">
+            We have let him cook, now we gonna{" "}
+            <ShiningText
+              text="let you cook ✨"
+              className="inline-block"
+              color="text-yellow-500 dark:text-yellow-300"
+            />
+          </h4>
+          {/* <RecipeCard recipe={recipe} /> */}
+        </section>
+      )}
 
       {/* Recipe Content */}
-      <div className="w-full prose prose-neutral dark:prose-invert leading-snug tracking-tight max-w-none">
+      <div
+        className={`${
+          hasSearch ? "mb-20" : ""
+        } w-full  prose prose-neutral dark:prose-invert leading-snug tracking-tight max-w-none`}
+      >
         {recipe.title && (
           <h1 className="text-3xl text-center font-bold mb-2">
             {recipe.title}
@@ -354,6 +289,75 @@ export default function IngredientInputSection() {
             )}
           </>
         )}
+      </div>
+
+      <div className="mx-auto w-full">
+        <h2 className="text-2xl text-center font-heading font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          {recipe.notes.length > 0
+            ? "Try something new"
+            : "What’s in your kitchen?"}
+        </h2>
+
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <Input
+            type="text"
+            value={ingredientInput}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter ingredients (e.g., chicken, tomatoes, cheese)"
+            className="w-full"
+          />
+          <Button onClick={addIngredient} variant="secondary" className="">
+            <Plus />
+          </Button>
+        </div>
+
+        {ingredients?.length > 0 ? (
+          <p className="text-sm opacity-70 my-2">Selected ingredients:</p>
+        ) : (
+          <p className="text-sm opacity-70">No ingredients added yet.</p>
+        )}
+
+        <div
+          className={`flex ${
+            ingredients?.length === 0 ? "" : "justify-between"
+          } mb-4`}
+        >
+          <div className="flex flex-wrap gap-2">
+            {ingredients?.map((ingredient, index) => (
+              <Badge
+                key={index}
+                variant="secondary"
+                className=" flex items-center gap-2 text-sm"
+              >
+                {ingredient}
+                <button
+                  onClick={() => removeIngredient(ingredient)}
+                  className="text-red-800 hover:text-red-900"
+                >
+                  <Delete className="w-5 h-5" />
+                </button>
+              </Badge>
+            ))}
+          </div>
+          {ingredients?.length !== 0 && (
+            <Button
+              variant="link"
+              className=""
+              onClick={() => setIngredients([])}
+            >
+              Reset
+            </Button>
+          )}
+        </div>
+
+        <Button
+          className="w-full font-logo text-lg font-bold tracking-widest"
+          disabled={ingredients?.length === 0}
+          onClick={handleSearch}
+        >
+          LET HIM COOK
+        </Button>
       </div>
     </div>
   );
