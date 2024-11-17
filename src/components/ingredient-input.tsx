@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Delete, Plus } from "lucide-react";
@@ -181,37 +181,93 @@ export default function IngredientInputSection() {
     );
   };
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // Scroll to the bottom whenever the messages change
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [recipe]);
+
   return (
     <div
+      ref={containerRef}
       className={`w-full ${
-        hasSearch ? "flex h-[85vh] pb-2" : " max-w-2xl "
-      } justify-center  overflow-y-auto flex-wrap gap-x-8 gap-y-4 mx-auto my-4  px-6 py-6  bg-neutral-50 dark:bg-neutral-900/10 border rounded-lg shadow-md`}
+        hasSearch ? "flex md:h-[calc(100vh-160px)] h-[calc(100vh-180px)]" : " "
+      } justify-center overflow-y-auto flex-wrap gap-x-8 gap-y-4 mx-auto my-4 p-6 bg-neutral-50 dark:bg-neutral-900/10 border rounded-lg shadow-md`}
     >
-      {!hasSearch ? null : loading ? (
-        <div className="flex justify-end">
-          <LoadingSpinner />
-        </div>
-      ) : (
-        <section className="flex flex-col justify-center items-center">
-          <h4 className="opacity-80 text-sm text-center">
-            We have let him cook, now we gonna{" "}
-            <ShiningText
-              text="let you cook ✨"
-              className="inline-block"
-              color="text-yellow-500 dark:text-yellow-300"
-            />
-          </h4>
-          {/* <RecipeCard recipe={recipe} /> */}
-        </section>
-      )}
+      <div className="mx-auto h-fit w-full bg-neutral-100 dark:bg-neutral-900 shadow-md border py-4 px-6 rounded-xl">
+        <h2 className="text-2xl text-center font-heading font-semibold mb-2 text-gray-800 dark:text-gray-100">
+          {hasSearch ? "Try another one!" : "What’s in your kitchen?"}
+        </h2>
 
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <Input
+            type="text"
+            value={ingredientInput}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter ingredients (e.g., chicken, tomatoes, cheese)"
+            className="w-full"
+          />
+          <Button onClick={addIngredient} variant="secondary" className="">
+            <Plus />
+          </Button>
+        </div>
+
+        {ingredients?.length > 0 ? (
+          <p className="text-sm opacity-70 my-2">Selected ingredients:</p>
+        ) : null}
+
+        <div
+          className={`flex ${
+            ingredients?.length === 0 ? "" : "justify-between"
+          } mb-4`}
+        >
+          <div className="flex flex-wrap gap-2">
+            {ingredients?.map((ingredient, index) => (
+              <Badge
+                key={index}
+                variant="secondary"
+                className=" flex items-center gap-2 text-sm"
+              >
+                {ingredient}
+                <button
+                  onClick={() => removeIngredient(ingredient)}
+                  className="text-red-800 hover:text-red-900"
+                >
+                  <Delete className="w-5 h-5" />
+                </button>
+              </Badge>
+            ))}
+          </div>
+          {ingredients?.length !== 0 && (
+            <Button
+              variant="link"
+              className=""
+              onClick={() => setIngredients([])}
+            >
+              Reset
+            </Button>
+          )}
+        </div>
+
+        <Button
+          className="w-full font-logo text-lg font-bold tracking-widest"
+          disabled={ingredients?.length === 0}
+          onClick={handleSearch}
+        >
+          LET HIM COOK
+        </Button>
+      </div>
       {/* Recipe Content */}
       <div
         className="
          w-full  prose prose-neutral dark:prose-invert leading-snug tracking-tight max-w-none"
       >
         {recipe.title && (
-          <h1 className="text-3xl text-center font-bold mb-2">
+          <h1 className="md:text-3xl text-2xl text-center font-bold mb-2">
             {recipe.title}
           </h1>
         )}
@@ -290,70 +346,23 @@ export default function IngredientInputSection() {
         )}
       </div>
 
-      <div className="sticky bottom-0 mx-auto h-fit w-full bg-neutral-900 py-4 px-6 rounded-xl">
-        <h2 className="text-2xl text-center font-heading font-semibold mb-2 text-gray-800 dark:text-gray-100">
-          {recipe.notes.length > 0 ? null : "What’s in your kitchen?"}
-        </h2>
-
-        <div className="flex items-center justify-between gap-2 mb-2">
-          <Input
-            type="text"
-            value={ingredientInput}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter ingredients (e.g., chicken, tomatoes, cheese)"
-            className="w-full"
-          />
-          <Button onClick={addIngredient} variant="secondary" className="">
-            <Plus />
-          </Button>
+      {!hasSearch ? null : loading ? (
+        <div className="mt-8">
+          <LoadingSpinner />
         </div>
-
-        {ingredients?.length > 0 ? (
-          <p className="text-sm opacity-70 my-2">Selected ingredients:</p>
-        ) : null}
-
-        <div
-          className={`flex ${
-            ingredients?.length === 0 ? "" : "justify-between"
-          } mb-4`}
-        >
-          <div className="flex flex-wrap gap-2">
-            {ingredients?.map((ingredient, index) => (
-              <Badge
-                key={index}
-                variant="secondary"
-                className=" flex items-center gap-2 text-sm"
-              >
-                {ingredient}
-                <button
-                  onClick={() => removeIngredient(ingredient)}
-                  className="text-red-800 hover:text-red-900"
-                >
-                  <Delete className="w-5 h-5" />
-                </button>
-              </Badge>
-            ))}
-          </div>
-          {ingredients?.length !== 0 && (
-            <Button
-              variant="link"
-              className=""
-              onClick={() => setIngredients([])}
-            >
-              Reset
-            </Button>
-          )}
-        </div>
-
-        <Button
-          className="w-full font-logo text-lg font-bold tracking-widest"
-          disabled={ingredients?.length === 0}
-          onClick={handleSearch}
-        >
-          LET HIM COOK
-        </Button>
-      </div>
+      ) : (
+        <section className="flex flex-col mt-8 justify-center items-center">
+          <h4 className=" text-center">
+            We have let him cook, now we gonna{" "}
+            <ShiningText
+              text="let you cook ✨"
+              className="inline-block"
+              color="text-yellow-500 dark:text-yellow-300"
+            />
+          </h4>
+          {/* <RecipeCard recipe={recipe} /> */}
+        </section>
+      )}
     </div>
   );
 }

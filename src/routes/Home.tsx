@@ -1,31 +1,35 @@
 // import meme from "../assets/meme.jpg";
-// import { useState } from "react";
+import { useState } from "react";
 import IngredientInputSection from "../components/ingredient-input";
 // import { Button } from "@/components/ui/button";
 // import { Volume2 } from "lucide-react";
-// import useSound from "use-sound";
-// import lethimcook from "/lethimcook.mp3";
-// import lethimcook2 from "/lethimcook2.mp3";
+import useSound from "use-sound";
+import lethimcook from "/lethimcook.mp3";
+import lethimcook2 from "/lethimcook2.mp3";
 import { ModeToggle } from "@/components/mode-toggle";
 import ShimmeringText from "@/components/shimmeringtext";
 
 export default function Home() {
-  // const music = [lethimcook, lethimcook2];
-  // const [musicIndex, setMusicIndex] = useState(1);
-  // const [play] = useSound(music[musicIndex], { volume: 0.5 });
+  const music = [lethimcook, lethimcook2];
+  const [musicIndex, setMusicIndex] = useState(1);
+  const [play] = useSound(music[musicIndex], { volume: 0.5 });
 
-  // const toggleMusic = () => {
-  //   setMusicIndex((prevIndex) => (prevIndex + 1) % music.length);
-  // };
+  const toggleMusic = () => {
+    setMusicIndex((prevIndex) => (prevIndex + 1) % music.length);
+  };
 
   return (
-    <div className="min-h-screen max-w-4xl flex flex-col justify-center mx-auto py-2 ">
+    <div className="min-h-screen max-w-4xl  flex flex-col justify-center mx-auto py-2 ">
       <div className="flex flex-col justify-center items-center ">
         {/* <div className="absolute top-0 z-[-2] h-full w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div> */}
 
         <div className="">
-          <div className="text-center w-full pt-4">
-            <h1 className="text-3xl font-logo font-bold my-2">
+          <div className=" text-center w-full pt-4">
+            <h1
+              onClick={() => play()}
+              onClickCapture={toggleMusic}
+              className="cursor-pointer md:text-4xl text-2xl font-logo font-bold my-4"
+            >
               <span>🧑‍🍳</span>
               <ShimmeringText text="Let Him Cook" />
               <span>🍴</span>
@@ -65,8 +69,8 @@ export default function Home() {
 
         <IngredientInputSection />
 
-        <div className="fixed bottom-0 w-full max-w-4xl">
-          <div className="absolute bottom-0 right-0 p-4">
+        <div className="fixed top-0 w-full max-w-4xl">
+          <div className="absolute top-0 right-0 py-8">
             <ModeToggle />
           </div>
         </div>
