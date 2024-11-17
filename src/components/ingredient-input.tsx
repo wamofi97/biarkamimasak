@@ -184,8 +184,8 @@ export default function IngredientInputSection() {
   return (
     <div
       className={`w-full ${
-        hasSearch ? "flex" : " max-w-2xl"
-      } justify-center flex-wrap gap-x-8 gap-y-4 mx-auto my-4 sm:px-12 px-6 py-8 bg-neutral-50 dark:bg-neutral-900/10 border rounded-lg shadow-md`}
+        hasSearch ? "flex h-[85vh] pb-2" : " max-w-2xl "
+      } justify-center  overflow-y-auto flex-wrap gap-x-8 gap-y-4 mx-auto my-4  px-6 py-6  bg-neutral-50 dark:bg-neutral-900/10 border rounded-lg shadow-md`}
     >
       {!hasSearch ? null : loading ? (
         <div className="flex justify-end">
@@ -207,9 +207,8 @@ export default function IngredientInputSection() {
 
       {/* Recipe Content */}
       <div
-        className={`${
-          hasSearch ? "mb-20" : ""
-        } w-full  prose prose-neutral dark:prose-invert leading-snug tracking-tight max-w-none`}
+        className="
+         w-full  prose prose-neutral dark:prose-invert leading-snug tracking-tight max-w-none"
       >
         {recipe.title && (
           <h1 className="text-3xl text-center font-bold mb-2">
@@ -291,11 +290,9 @@ export default function IngredientInputSection() {
         )}
       </div>
 
-      <div className="mx-auto w-full">
-        <h2 className="text-2xl text-center font-heading font-semibold mb-4 text-gray-800 dark:text-gray-100">
-          {recipe.notes.length > 0
-            ? "Try another one!"
-            : "What’s in your kitchen?"}
+      <div className="sticky bottom-0 mx-auto h-fit w-full bg-neutral-900 py-4 px-6 rounded-xl">
+        <h2 className="text-2xl text-center font-heading font-semibold mb-2 text-gray-800 dark:text-gray-100">
+          {recipe.notes.length > 0 ? null : "What’s in your kitchen?"}
         </h2>
 
         <div className="flex items-center justify-between gap-2 mb-2">
@@ -314,9 +311,7 @@ export default function IngredientInputSection() {
 
         {ingredients?.length > 0 ? (
           <p className="text-sm opacity-70 my-2">Selected ingredients:</p>
-        ) : (
-          <p className="text-sm opacity-70">No ingredients added yet.</p>
-        )}
+        ) : null}
 
         <div
           className={`flex ${
