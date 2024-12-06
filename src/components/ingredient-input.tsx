@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { ChevronRight, Delete, Info, Plus, X } from "lucide-react";
+import { Info, Plus, X } from "lucide-react";
 import { Badge } from "./ui/badge";
 import LoadingSpinner from "./loading-spinner";
 import ShiningText from "./shiningtext";
