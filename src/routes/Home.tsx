@@ -1,8 +1,5 @@
-// import meme from "../assets/meme.jpg";
 import { useState } from "react";
 import IngredientInputSection from "../components/ingredient-input";
-// import { Button } from "@/components/ui/button";
-// import { Volume2 } from "lucide-react";
 import useSound from "use-sound";
 import lethimcook from "/lethimcook.mp3";
 import lethimcook2 from "/lethimcook2.mp3";
@@ -19,12 +16,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen max-w-4xl  flex flex-col justify-center mx-auto py-2 ">
+    <div className="min-h-screen max-w-4xl flex flex-col justify-center mx-auto py-10 sm:py-8 ">
       <div className="flex flex-col justify-center items-center ">
-        {/* <div className="absolute top-0 z-[-2] h-full w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div> */}
-
-        <div className="">
-          <div className=" text-center w-full pt-4">
+        <div className="pt-4 px-3">
+          <div className=" text-center w-full ">
             <h1
               onClick={() => play()}
               onClickCapture={toggleMusic}
@@ -39,38 +34,12 @@ export default function Home() {
               your available ingredients.
             </h2>
           </div>
-
-          {/* <div className=" w-full px-4 mt-4">
-            <div className="flex items-center">
-              <p className="italic">let-him-cook </p>
-              <Button
-                onClick={() => play()}
-                onClickCapture={toggleMusic}
-                variant="outline"
-                className="ml-2 h-8 w-8"
-              >
-                <Volume2 />{" "}
-              </Button>
-            </div>
-            <p className="text-sm">
-              Definition : to let someone do what they are doing because it's
-              interesting or it may result in something.
-            </p>
-            <div className="group inline-block relative w-20">
-              <p className="text-sm italic  opacity-80  underline">Source</p>
-              <img
-                className="absolute -top-4 scale-[0.1] opacity-0 rounded-2xl w-20 h-16 group-hover:scale-125 group-hover:opacity-100 transition-transform duration-300"
-                src={meme}
-                alt="trust me bro meme"
-              />
-            </div>
-          </div> */}
         </div>
 
         <IngredientInputSection />
 
-        <div className="fixed top-0 w-full max-w-4xl">
-          <div className="absolute top-0 right-0 py-8">
+        <div className="fixed bottom-0 w-full max-w-4xl">
+          <div className="absolute bottom-0 right-0 py-8">
             <ModeToggle />
           </div>
         </div>
