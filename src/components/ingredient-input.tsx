@@ -238,12 +238,13 @@ export default function IngredientInputSection() {
               onCheckedChange={() => setIsAdvanced(!isAdvanced)}
             />
             {!isSignedIn && (
-              <div className="group relative">
+              <div className="group relative flex-grow">
                 <Info className="w-5 h-5" />
-                <span className="absolute -top-1 left-full opacity-0 rounded-md bg-white w-80 px-2 py-1 text-sm text-neutral-700 shadow-md transition-opacity duration-500 group-hover:opacity-100">
-                  {" "}
-                  Please sign in to use this feature.
-                </span>
+                <div className="absolute -left-1/2 z-10 sm:-top-2 sm:left-7 w-0 sm:h-7 rounded-md bg-white sm:group-hover:w-80 group-hover:w-fit transition-[width] delay-200 duration-300 overflow-hidden text-sm text-neutral-700 shadow-md">
+                  <p className="px-2 py-1">
+                    Please sign in to use this feature.
+                  </p>
+                </div>
               </div>
             )}
           </div>
